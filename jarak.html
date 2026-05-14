@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kalkulator Jarak & Waktu</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#03152d,#0d2b57);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  color:white;
+}
+
+.container{
+  width:100%;
+  max-width:550px;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:#9ecfff;
+  font-size:16px;
+}
+
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:25px;
+  padding:35px;
+  box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+.title{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.desc{
+  text-align:center;
+  color:#b8dfff;
+  margin-bottom:30px;
+  line-height:1.6;
+}
+
+.input-group{
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  margin-bottom:10px;
+  color:#d9ecff;
+}
+
+input, select{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:#0a1c38;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input::placeholder{
+  color:#8eb8e4;
+}
+
+button{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:15px;
+  background:#4da3ff;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#2f8fff;
+  transform:translateY(-3px);
+}
+
+.hasil{
+  margin-top:30px;
+  background:#07162d;
+  border-radius:18px;
+  padding:25px;
+}
+
+.hasil h2{
+  text-align:center;
+  margin-bottom:20px;
+  color:#8fcaff;
+}
+
+.hasil p{
+  margin:12px 0;
+  font-size:18px;
+}
+
+.result{
+  color:#67ff9f;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.penjelasan{
+  margin-top:25px;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:15px;
+  line-height:1.8;
+  color:#cfe7ff;
+}
+
+.footer{
+  text-align:center;
+  margin-top:20px;
+  color:#9ecfff;
+  font-size:14px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">
+⬅ Kembali
+</a>
+
+<div class="card">
+
+<h1 class="title">
+🚗 Kalkulator Jarak & Waktu
+</h1>
+
+<p class="desc">
+Hitung jarak atau waktu dengan satuan otomatis.
+</p>
+
+<div class="input-group">
+
+<label>Pilih Perhitungan</label>
+
+<select id="mode">
+
+<option value="jarak">
+Hitung Jarak
+</option>
+
+<option value="waktu">
+Hitung Waktu
+</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>Kecepatan</label>
+
+<input
+type="text"
+id="kecepatan"
+placeholder="Contoh: 60 km/jam">
+
+</div>
+
+<div class="input-group">
+
+<label id="labelInput">
+Waktu
+</label>
+
+<input
+type="text"
+id="nilai"
+placeholder="Contoh: 2 jam">
+
+</div>
+
+<button onclick="hitung()">
+Hitung
+</button>
+
+<div class="hasil">
+
+<h2>Hasil Perhitungan</h2>
+
+<p id="info1">
+-
+</p>
+
+<p id="info2">
+-
+</p>
+
+<p id="hasilAkhir" class="result">
+Hasil : -
+</p>
+
+<div class="penjelasan" id="penjelasan">
+
+Masukkan data terlebih dahulu.
+
+</div>
+
+</div>
+
+<div class="footer">
+MSDRkulator © 2026
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// Ganti placeholder otomatis
+document.getElementById("mode").addEventListener("change", function(){
+
+  let mode = this.value;
+
+  let label =
+  document.getElementById("labelInput");
+
+  let input =
+  document.getElementById("nilai");
+
+  if(mode == "jarak"){
+
+    label.innerHTML = "Waktu";
+    input.placeholder = "Contoh: 2 jam";
+
+  }
+
+  else{
+
+    label.innerHTML = "Jarak";
+    input.placeholder = "Contoh: 120 km";
+
+  }
+
+});
+
+function hitung(){
+
+  let mode =
+  document.getElementById("mode").value;
+
+  // Ambil kecepatan
+  let kecepatanInput =
+  document.getElementById("kecepatan")
+  .value.toLowerCase();
+
+  // Validasi km/jam
+  if(!kecepatanInput.includes("km/jam")){
+
+    alert("Kecepatan harus memakai km/jam");
+
+    return;
+  }
+
+  // Ambil angka kecepatan
+  let kecepatan =
+  parseFloat(
+  kecepatanInput.replace("km/jam","")
+  );
+
+  // Ambil input kedua
+  let nilaiInput =
+  document.getElementById("nilai")
+  .value.toLowerCase();
+
+  let nilai;
+
+  // =========================
+  // HITUNG JARAK
+  // =========================
+  if(mode == "jarak"){
+
+    if(
+      !nilaiInput.includes("jam") &&
+      !nilaiInput.includes("menit") &&
+      !nilaiInput.includes("detik")
+    ){
+
+      alert(
+      "Waktu harus memakai jam, menit, atau detik"
+      );
+
+      return;
+    }
+
+    nilai = parseFloat(nilaiInput);
+
+    // Konversi waktu ke jam
+    if(nilaiInput.includes("menit")){
+
+      nilai = nilai / 60;
+
+    }
+
+    else if(nilaiInput.includes("detik")){
+
+      nilai = nilai / 3600;
+
+    }
+
+    let jarak =
+    kecepatan * nilai;
+
+    document.getElementById("info1").innerHTML =
+    "Kecepatan : " + kecepatan + " km/jam";
+
+    document.getElementById("info2").innerHTML =
+    "Waktu : " + nilaiInput;
+
+    document.getElementById("hasilAkhir").innerHTML =
+    "Jarak : " + jarak.toFixed(2) + " km";
+
+    document.getElementById("penjelasan").innerHTML =
+
+    "<b>Penjelasan:</b><br><br>" +
+
+    "Rumus menghitung jarak:<br>" +
+
+    "<b>Jarak = Kecepatan × Waktu</b><br><br>" +
+
+    kecepatan + " × " +
+
+    nilai.toFixed(2) +
+
+    " = " +
+
+    jarak.toFixed(2) + " km";
+
+  }
+
+  // =========================
+  // HITUNG WAKTU
+  // =========================
+  else{
+
+    if(!nilaiInput.includes("km")){
+
+      alert("Jarak harus memakai km");
+
+      return;
+    }
+
+    nilai =
+    parseFloat(
+    nilaiInput.replace("km","")
+    );
+
+    let waktu =
+    nilai / kecepatan;
+
+    document.getElementById("info1").innerHTML =
+    "Kecepatan : " + kecepatan + " km/jam";
+
+    document.getElementById("info2").innerHTML =
+    "Jarak : " + nilai + " km";
+
+    document.getElementById("hasilAkhir").innerHTML =
+    "Waktu : " + waktu.toFixed(2) + " jam";
+
+    document.getElementById("penjelasan").innerHTML =
+
+    "<b>Penjelasan:</b><br><br>" +
+
+    "Rumus menghitung waktu:<br>" +
+
+    "<b>Waktu = Jarak ÷ Kecepatan</b><br><br>" +
+
+    nilai + " ÷ " +
+
+    kecepatan +
+
+    " = " +
+
+    waktu.toFixed(2) + " jam";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>

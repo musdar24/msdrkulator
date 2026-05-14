@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MSDRkulator</title>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICON -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      background:
+      radial-gradient(circle at top left,#1b4fff 0%,transparent 30%),
+      radial-gradient(circle at bottom right,#7b2ff7 0%,transparent 30%),
+      #050d1f;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .container{
+      width:90%;
+      max-width:1300px;
+      margin:auto;
+      padding:60px 0;
+    }
+
+    /* HEADER */
+
+    .hero{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .hero h1{
+      font-size:68px;
+      font-weight:700;
+      margin-bottom:20px;
+      line-height:1.2;
+    }
+
+    .hero h1 span{
+      background:linear-gradient(to right,#4facfe,#b465ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      max-width:850px;
+      margin:auto;
+      color:#b8cfff;
+      font-size:20px;
+      line-height:1.8;
+    }
+
+    /* GRID */
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    /* CARD */
+
+    .menu-card{
+      position:relative;
+      background:rgba(18,30,68,0.7);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(14px);
+      border-radius:28px;
+      padding:40px 30px;
+      text-decoration:none;
+      color:white;
+      overflow:hidden;
+      transition:0.4s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .menu-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow:0 20px 45px rgba(0,0,0,0.45);
+      border-color:rgba(90,169,255,0.4);
+    }
+
+    .menu-card::before{
+      content:'';
+      position:absolute;
+      width:180px;
+      height:180px;
+      background:rgba(255,255,255,0.05);
+      border-radius:50%;
+      top:-80px;
+      right:-70px;
+    }
+
+    /* ICON */
+
+    .icon-box{
+      width:85px;
+      height:85px;
+      border-radius:22px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:34px;
+      margin-bottom:28px;
+      color:white;
+    }
+
+    .blue{
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+    }
+
+    .green{
+      background:linear-gradient(135deg,#00c853,#00e5a8);
+    }
+
+    .purple{
+      background:linear-gradient(135deg,#7b2ff7,#b465ff);
+    }
+
+    .cyan{
+      background:linear-gradient(135deg,#00bcd4,#4dd0e1);
+    }
+
+    .orange{
+      background:linear-gradient(135deg,#ff9800,#ffb74d);
+    }
+
+    /* TEXT */
+
+    .menu-title{
+      font-size:28px;
+      font-weight:600;
+      margin-bottom:15px;
+    }
+
+    .menu-text{
+      color:#c7d7ff;
+      line-height:1.8;
+      font-size:16px;
+    }
+
+    /* BUTTON */
+
+    .arrow{
+      margin-top:30px;
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:0.3s;
+    }
+
+    .menu-card:hover .arrow{
+      background:white;
+      color:#111;
+      transform:translateX(6px);
+    }
+
+    /* FOOTER */
+
+    footer{
+      margin-top:70px;
+      text-align:center;
+      padding:20px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.06);
+      color:#b8cfff;
+      font-size:15px;
+      backdrop-filter:blur(10px);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:46px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .menu-title{
+        font-size:24px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+      <h1>
+        MSDR<span>kulator</span>
+      </h1>
+
+      <p>
+        Kalkulator modern multi fungsi untuk membantu
+        perhitungan matematika, diskon, konversi,
+        keuangan, dan kebutuhan sehari-hari.
+      </p>
+
+    </div>
+
+    <!-- MENU -->
+
+    <div class="menu-grid">
+
+      <!-- KALKULATOR UMUM -->
+
+      <a href="umum.html" class="menu-card">
+
+        <div class="icon-box blue">
+          <i class="fa-solid fa-calculator"></i>
+        </div>
+
+        <div class="menu-title">
+          Kalkulator Umum
+        </div>
+
+        <div class="menu-text">
+          Operasi hitung dasar, persen.
+        </div>
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+      </a>
+
+      <!-- DISKON -->
+
+      <a href="diskon.html" class="menu-card">
+
+        <div class="icon-box green">
+          <i class="fa-solid fa-tags"></i>
+        </div>
+
+        <div class="menu-title">
+          Kalkulator Diskon
+        </div>
+
+        <div class="menu-text">
+          Menghitung potongan harga,
+          cashback, dan total pembayaran.
+        </div>
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+      </a>
+
+      <!-- JARAK -->
+
+      <a href="jarak.html" class="menu-card">
+
+        <div class="icon-box purple">
+          <i class="fa-solid fa-car-side"></i>
+        </div>
+
+        <div class="menu-title">
+          Kalkulator Jarak
+        </div>
+
+        <div class="menu-text">
+          Menghitung jarak, waktu tempuh,
+          dan kecepatan perjalanan.
+        </div>
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+      </a>
+
+      <!-- KONVERSI -->
+
+      <a href="konversi.html" class="menu-card">
+
+        <div class="icon-box cyan">
+          <i class="fa-solid fa-repeat"></i>
+        </div>
+
+        <div class="menu-title">
+          Konversi Satuan
+        </div>
+
+        <div class="menu-text">
+          Konversi satuan.
+        </div>
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+      </a>
+
+      <!-- KEUANGAN -->
+
+      <a href="keuangan.html" class="menu-card">
+
+        <div class="icon-box orange">
+          <i class="fa-solid fa-sack-dollar"></i>
+        </div>
+
+        <div class="menu-title">
+          Kalkulator Keuangan
+        </div>
+
+        <div class="menu-text">
+          Hitung keuntungan usaha.
+        </div>
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+      </a>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+      ✨ © 2026 MSDRkulator — Smart Calculator Modern UI
+    </footer>
+
+  </div>
+
+</body>
+</html>

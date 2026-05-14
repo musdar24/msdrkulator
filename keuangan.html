@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kalkulator Keuangan</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#03152d,#0d2b57);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      color:white;
+    }
+
+    .container{
+      width:100%;
+      max-width:450px;
+    }
+
+    .back{
+      display:inline-block;
+      margin-bottom:20px;
+      color:#9ed0ff;
+      text-decoration:none;
+      font-size:16px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:25px;
+      padding:35px;
+      box-shadow:0 0 25px rgba(0,0,0,0.3);
+    }
+
+    .title{
+      text-align:center;
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#b8dfff;
+      margin-bottom:30px;
+      line-height:1.6;
+    }
+
+    .input-group{
+      margin-bottom:20px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:10px;
+      font-size:15px;
+      color:#d7ecff;
+    }
+
+    input{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:#0a1f40;
+      color:white;
+      font-size:16px;
+      outline:none;
+    }
+
+    input::placeholder{
+      color:#9bbde0;
+    }
+
+    button{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:15px;
+      background:#4da3ff;
+      color:white;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    button:hover{
+      background:#2f8fff;
+      transform:translateY(-2px);
+    }
+
+    .hasil{
+      margin-top:30px;
+      background:#07162d;
+      padding:25px;
+      border-radius:18px;
+      text-align:center;
+    }
+
+    .hasil h2{
+      font-size:20px;
+      margin-bottom:15px;
+      color:#8cc8ff;
+    }
+
+    .hasil p{
+      margin:10px 0;
+      font-size:18px;
+    }
+
+    .untung{
+      color:#5dff9b;
+      font-weight:bold;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <a href="index.html" class="back">
+    ⬅ Kembali
+  </a>
+
+  <div class="card">
+
+    <h1 class="title">
+      💰 Kalkulator Keuangan
+    </h1>
+
+    <p class="subtitle">
+      Hitung keuntungan penjualan dengan cepat dan mudah
+    </p>
+
+    <div class="input-group">
+      <label>Modal Awal</label>
+      <input type="number" id="modal" placeholder="Contoh: 50000">
+    </div>
+
+    <div class="input-group">
+      <label>Harga Jual</label>
+      <input type="number" id="jual" placeholder="Contoh: 75000">
+    </div>
+
+    <button onclick="hitungKeuntungan()">
+      Hitung Keuntungan
+    </button>
+
+    <div class="hasil">
+
+      <h2>Hasil Perhitungan</h2>
+
+      <p id="modalHasil">
+        Modal : Rp0
+      </p>
+
+      <p id="jualHasil">
+        Harga Jual : Rp0
+      </p>
+
+      <p id="untungHasil" class="untung">
+        Keuntungan : Rp0
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function hitungKeuntungan(){
+
+  let modal =
+  parseFloat(document.getElementById("modal").value);
+
+  let jual =
+  parseFloat(document.getElementById("jual").value);
+
+  if(isNaN(modal) || isNaN(jual)){
+
+    alert("Masukkan angka terlebih dahulu!");
+
+    return;
+  }
+
+  let keuntungan = jual - modal;
+
+  document.getElementById("modalHasil").innerHTML =
+  "Modal : Rp" + modal.toLocaleString();
+
+  document.getElementById("jualHasil").innerHTML =
+  "Harga Jual : Rp" + jual.toLocaleString();
+
+  document.getElementById("untungHasil").innerHTML =
+  "Keuntungan : Rp" + keuntungan.toLocaleString();
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kalkulator Umum</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#03152d,#0d2b57);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+}
+
+.back{
+  margin-bottom:20px;
+  text-decoration:none;
+  color:#9ecfff;
+  font-size:17px;
+}
+
+.calculator{
+  width:350px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:25px;
+  padding:25px;
+  box-shadow:0 0 30px rgba(0,0,0,0.4);
+}
+
+.title{
+  text-align:center;
+  color:white;
+  margin-bottom:20px;
+  font-size:30px;
+}
+
+.display{
+  width:100%;
+  height:80px;
+  border:none;
+  border-radius:15px;
+  margin-bottom:20px;
+  padding:15px;
+  font-size:35px;
+  text-align:right;
+  background:#07162d;
+  color:#fff;
+  outline:none;
+  box-shadow:inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+button{
+  height:65px;
+  border:none;
+  border-radius:15px;
+  font-size:22px;
+  cursor:pointer;
+  background:#12315f;
+  color:white;
+  transition:0.2s;
+  font-weight:bold;
+}
+
+button:hover{
+  transform:scale(1.05);
+  background:#1d4b8f;
+}
+
+.operator{
+  background:#ff9800;
+}
+
+.operator:hover{
+  background:#ffb340;
+}
+
+.equal{
+  background:#00b85c;
+}
+
+.equal:hover{
+  background:#00d96c;
+}
+
+.clear{
+  background:#ff3b3b;
+}
+
+.clear:hover{
+  background:#ff5f5f;
+}
+
+.zero{
+  grid-column:span 2;
+}
+
+.footer{
+  margin-top:20px;
+  color:#a7d0ff;
+  font-size:14px;
+  text-align:center;
+}
+
+</style>
+
+</head>
+<body>
+
+<a href="index.html" class="back">
+⬅ Kembali
+</a>
+
+<div class="calculator">
+
+<h1 class="title">
+🧮 Kalkulator
+</h1>
+
+<input
+type="text"
+class="display"
+id="display"
+readonly>
+
+<div class="buttons">
+
+<button onclick="clearDisplay()" class="clear">
+C
+</button>
+
+<button onclick="hapus()">
+⌫
+</button>
+
+<button onclick="tambah('%')" class="operator">
+%
+</button>
+
+<button onclick="tambah('/')" class="operator">
+÷
+</button>
+
+<button onclick="tambah('7')">7</button>
+<button onclick="tambah('8')">8</button>
+<button onclick="tambah('9')">9</button>
+
+<button onclick="tambah('*')" class="operator">
+×
+</button>
+
+<button onclick="tambah('4')">4</button>
+<button onclick="tambah('5')">5</button>
+<button onclick="tambah('6')">6</button>
+
+<button onclick="tambah('-')" class="operator">
+−
+</button>
+
+<button onclick="tambah('1')">1</button>
+<button onclick="tambah('2')">2</button>
+<button onclick="tambah('3')">3</button>
+
+<button onclick="tambah('+')" class="operator">
++
+</button>
+
+<button onclick="tambah('0')" class="zero">
+0
+</button>
+
+<button onclick="tambah('.')">
+.
+</button>
+
+<button onclick="hasil()" class="equal">
+=
+</button>
+
+</div>
+
+<div class="footer">
+MSDRkulator © 2026
+</div>
+
+</div>
+
+<script>
+
+function tambah(nilai){
+
+  document.getElementById("display").value += nilai;
+
+}
+
+function clearDisplay(){
+
+  document.getElementById("display").value = "";
+
+}
+
+function hapus(){
+
+  let display =
+  document.getElementById("display");
+
+  display.value =
+  display.value.slice(0,-1);
+
+}
+
+function hasil(){
+
+  let display =
+  document.getElementById("display");
+
+  try{
+
+    display.value =
+    eval(display.value);
+
+  }
+
+  catch{
+
+    display.value = "Error";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
